@@ -64,19 +64,105 @@
     }
 
     h1, h2, h3 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
+    img { max-width: 100%; display: block; }
 
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(28px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+    }
 
-    /* ── HEADER ── */
-    .quiz-page-header {
+    /* ════════════════════════════════════════════════
+       INTRO SCREEN
+    ════════════════════════════════════════════════ */
+    #intro-screen {
+      display: none; /* JS mostra quando ?p está ausente */
+      flex: 1;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px 64px;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .intro-inner {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .intro-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .intro-title .hl { color: var(--gold); }
+
+    .intro-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 400px;
+    }
+
+    .intro-img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .btn-start {
+      width: 100%;
+      background: var(--cta);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 50px;
+      padding: 18px 32px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s, transform 0.15s;
+      animation: pulseRing 2s infinite;
+    }
+
+    .btn-start:hover {
+      background: var(--cta-dark);
+      transform: scale(1.02);
+    }
+
+    .intro-time-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ════════════════════════════════════════════════
+       QUIZ HEADER (oculto na tela de entrada)
+    ════════════════════════════════════════════════ */
+    #quiz-header {
+      display: none; /* JS mostra quando ?p está presente */
       width: 100%;
       background: var(--bg2);
       border-bottom: 1px solid var(--border);
       padding: 20px 20px 16px;
-      display: flex;
       flex-direction: column;
       align-items: center;
       gap: 14px;
@@ -120,13 +206,15 @@
       letter-spacing: 0.5px;
     }
 
-    /* ── MAIN ── */
-    .quiz-main {
+    /* ════════════════════════════════════════════════
+       QUIZ MAIN (oculto na tela de entrada)
+    ════════════════════════════════════════════════ */
+    #quiz-main {
+      display: none; /* JS mostra quando ?p está presente */
       flex: 1;
       width: 100%;
       max-width: 600px;
       padding: 40px 20px 70px;
-      display: flex;
       flex-direction: column;
       align-items: center;
     }
@@ -212,6 +300,7 @@
     }
 
     @media (max-width: 480px) {
+      .intro-title { font-size: 1.5rem; }
       .option-btn { font-size: 0.9rem; padding: 16px 16px; }
       .option-letter { min-width: 30px; height: 30px; font-size: 0.76rem; }
     }
@@ -219,7 +308,35 @@
 </head>
 <body>
 
-<header class="quiz-page-header">
+<!-- ════════════════════════════════════════════════
+     TELA DE ENTRADA (sem ?p na URL)
+════════════════════════════════════════════════ -->
+<div id="intro-screen">
+  <div class="intro-inner">
+
+    <h1 class="intro-title">
+      ¿Tu <span class="hl">memoria</span> está
+      <span class="hl">fallando</span> más de lo que crees?
+    </h1>
+
+    <p class="intro-subtitle">
+      La mayoría de las personas lo nota tarde. Esta evaluación te dice en menos de 2 minutos.
+    </p>
+
+    <!-- Utilizar img-1.png com alt="Evaluación cognitiva" -->
+    <img src="img-1.png" alt="Evaluación cognitiva" class="intro-img" />
+
+    <button class="btn-start" onclick="startQuiz()">EMPEZAR →</button>
+
+    <p class="intro-time-note">⏱ Menos de 2 minutos</p>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     HEADER DO QUIZ (aparece apenas a partir de ?p=1)
+════════════════════════════════════════════════ -->
+<header id="quiz-header">
   <p class="quiz-page-title">Test de Riesgo Cognitivo</p>
   <div class="progress-wrap">
     <div class="progress-bar-bg">
@@ -229,7 +346,10 @@
   </div>
 </header>
 
-<main class="quiz-main">
+<!-- ════════════════════════════════════════════════
+     MAIN DO QUIZ (aparece apenas a partir de ?p=1)
+════════════════════════════════════════════════ -->
+<main id="quiz-main">
   <div class="question-block" id="question-block">
     <p class="question-number" id="question-number">Pregunta 1 de 10</p>
     <h1 class="question-text" id="question-text">Cargando...</h1>
@@ -256,90 +376,90 @@
       p: 2,
       text: 'En la última semana, ¿cuántas veces olvidaste dónde dejaste algo importante, como tus llaves, tu celular o tus lentes?',
       options: [
-        { text: 'Ninguna vez',                                              score: 0 },
-        { text: 'Una o dos veces',                                          score: 1 },
-        { text: 'Tres o cuatro veces',                                      score: 2 },
-        { text: 'Más de cuatro veces, ya me está preocupando',              score: 4 }
+        { text: 'Ninguna vez',                                         score: 0 },
+        { text: 'Una o dos veces',                                     score: 1 },
+        { text: 'Tres o cuatro veces',                                 score: 2 },
+        { text: 'Más de cuatro veces, ya me está preocupando',         score: 4 }
       ]
     },
     {
       p: 3,
       text: '¿Te ha pasado que estás hablando con alguien y de repente olvidaste su nombre, aunque lo conoces de hace años?',
       options: [
-        { text: 'Nunca me ha pasado',                                                   score: 0 },
-        { text: 'Me ha pasado una o dos veces, fue raro',                               score: 1 },
-        { text: 'Me pasa con cierta frecuencia y me da vergüenza',                      score: 3 },
-        { text: 'Me pasa casi todo el tiempo y ya evito ciertas conversaciones',        score: 4 }
+        { text: 'Nunca me ha pasado',                                                    score: 0 },
+        { text: 'Me ha pasado una o dos veces, fue raro',                                score: 1 },
+        { text: 'Me pasa con cierta frecuencia y me da vergüenza',                       score: 3 },
+        { text: 'Me pasa casi todo el tiempo y ya evito ciertas conversaciones',         score: 4 }
       ]
     },
     {
       p: 4,
       text: '¿Has tenido dificultad para recordar citas, compromisos o cosas que tenías que hacer, aunque las hayas anotado?',
       options: [
-        { text: 'No, mi memoria para los compromisos sigue siendo buena',   score: 0 },
-        { text: 'A veces olvido algo, pero no es grave',                    score: 1 },
-        { text: 'Sí, y ya he fallado a compromisos importantes por eso',    score: 3 },
-        { text: 'Sí, y necesito que alguien me recuerde casi todo',         score: 4 }
+        { text: 'No, mi memoria para los compromisos sigue siendo buena',  score: 0 },
+        { text: 'A veces olvido algo, pero no es grave',                   score: 1 },
+        { text: 'Sí, y ya he fallado a compromisos importantes por eso',   score: 3 },
+        { text: 'Sí, y necesito que alguien me recuerde casi todo',        score: 4 }
       ]
     },
     {
       p: 5,
       text: 'Cuando olvidas algo, ¿qué es lo primero que sientes?',
       options: [
-        { text: 'Nada especial, le pasa a cualquiera',                                      score: 0 },
-        { text: 'Un poco de frustración, pero lo dejo pasar',                               score: 1 },
-        { text: 'Preocupación real, me pregunto si esto va a empeorar',                     score: 3 },
-        { text: 'Miedo. A veces pienso que podría tener Alzheimer o demencia',              score: 4 }
+        { text: 'Nada especial, le pasa a cualquiera',                                  score: 0 },
+        { text: 'Un poco de frustración, pero lo dejo pasar',                           score: 1 },
+        { text: 'Preocupación real, me pregunto si esto va a empeorar',                 score: 3 },
+        { text: 'Miedo. A veces pienso que podría tener Alzheimer o demencia',          score: 4 }
       ]
     },
     {
       p: 6,
       text: '¿Alguien cercano a ti ha comentado que te nota más olvidadizo o distraído últimamente?',
       options: [
-        { text: 'No, nadie ha dicho nada',                                              score: 0 },
-        { text: 'Lo han mencionado de broma, sin preocupación real',                    score: 1 },
-        { text: 'Sí, y noté que les preocupa aunque traten de disimularlo',             score: 3 },
-        { text: 'Sí, y ya hemos tenido conversaciones serias sobre esto',               score: 4 }
+        { text: 'No, nadie ha dicho nada',                                          score: 0 },
+        { text: 'Lo han mencionado de broma, sin preocupación real',                score: 1 },
+        { text: 'Sí, y noté que les preocupa aunque traten de disimularlo',         score: 3 },
+        { text: 'Sí, y ya hemos tenido conversaciones serias sobre esto',           score: 4 }
       ]
     },
     {
       p: 7,
       text: '¿Cómo describirías tu nivel de concentración y claridad mental en el día a día?',
       options: [
-        { text: 'Excelente, me concentro sin dificultad',                   score: 0 },
-        { text: 'Aceptable, aunque a veces me cuesta enfocarme',            score: 1 },
-        { text: 'Regular, siento que pienso más lento que antes',           score: 3 },
-        { text: 'Malo, la niebla mental me acompaña casi todo el día',      score: 4 }
+        { text: 'Excelente, me concentro sin dificultad',                  score: 0 },
+        { text: 'Aceptable, aunque a veces me cuesta enfocarme',           score: 1 },
+        { text: 'Regular, siento que pienso más lento que antes',          score: 3 },
+        { text: 'Malo, la niebla mental me acompaña casi todo el día',     score: 4 }
       ]
     },
     {
       p: 8,
       text: 'Comparado con cómo eras hace 5 o 10 años, ¿cómo sientes tu memoria hoy?',
       options: [
-        { text: 'Igual o mejor que antes',                                  score: 0 },
-        { text: 'Un poco más lenta, pero dentro de lo normal',              score: 1 },
-        { text: 'Notablemente peor, y eso me preocupa',                     score: 3 },
-        { text: 'Mucho peor, siento que estoy perdiendo una parte de mí',   score: 4 }
+        { text: 'Igual o mejor que antes',                                 score: 0 },
+        { text: 'Un poco más lenta, pero dentro de lo normal',             score: 1 },
+        { text: 'Notablemente peor, y eso me preocupa',                    score: 3 },
+        { text: 'Mucho peor, siento que estoy perdiendo una parte de mí',  score: 4 }
       ]
     },
     {
       p: 9,
       text: '¿Algún familiar directo — padre, madre, abuelo o abuela — fue diagnosticado con Alzheimer, demencia u otro tipo de deterioro cognitivo?',
       options: [
-        { text: 'No que yo sepa',                                                   score: 0 },
-        { text: 'Sí, pero fue a una edad muy avanzada',                             score: 2 },
-        { text: 'Sí, y me preocupa que me pueda pasar lo mismo',                   score: 3 },
-        { text: 'Sí, y ese miedo me acompaña desde hace tiempo',                   score: 4 }
+        { text: 'No que yo sepa',                                                score: 0 },
+        { text: 'Sí, pero fue a una edad muy avanzada',                          score: 2 },
+        { text: 'Sí, y me preocupa que me pueda pasar lo mismo',                score: 3 },
+        { text: 'Sí, y ese miedo me acompaña desde hace tiempo',                score: 4 }
       ]
     },
     {
       p: 10,
       text: 'Si descubrieras hoy mismo un método natural, práctico y probado para proteger y restaurar tu memoria, ¿estarías dispuesto a seguirlo?',
       options: [
-        { text: 'Probablemente no, no creo que lo necesite',                            score: 0 },
-        { text: 'Tal vez, dependiendo de lo que implique',                              score: 1 },
-        { text: 'Sí, definitivamente me interesa',                                      score: 3 },
-        { text: 'Sí, llevo tiempo buscando algo así y estoy listo para actuar',         score: 4 }
+        { text: 'Probablemente no, no creo que lo necesite',                         score: 0 },
+        { text: 'Tal vez, dependiendo de lo que implique',                           score: 1 },
+        { text: 'Sí, definitivamente me interesa',                                   score: 3 },
+        { text: 'Sí, llevo tiempo buscando algo así y estoy listo para actuar',      score: 4 }
       ]
     }
   ];
@@ -348,32 +468,55 @@
   var LETTERS = ['A', 'B', 'C', 'D'];
 
   /* ============================================================
-     INIT — leer ?p=N y renderizar
+     INIT — decisão: intro screen ou pergunta do quiz
   ============================================================ */
   (function init() {
     var params = new URLSearchParams(window.location.search);
-    var p = parseInt(params.get('p'), 10);
+    var rawP   = params.get('p');
 
-    if (!p || p < 1 || p > 10) {
-      window.location.href = 'quiz.html?p=1';
+    /* Sem ?p → mostrar tela de entrada */
+    if (rawP === null) {
+      document.getElementById('intro-screen').style.display = 'flex';
       return;
     }
+
+    var p = parseInt(rawP, 10);
+
+    /* ?p inválido → voltar para tela de entrada */
+    if (isNaN(p) || p < 1 || p > 10) {
+      window.location.href = 'quiz.html';
+      return;
+    }
+
+    /* ?p válido → mostrar header e quiz */
+    document.getElementById('quiz-header').style.display = 'flex';
+    document.getElementById('quiz-main').style.display   = 'flex';
 
     if (p === 1) {
       localStorage.setItem(STORAGE_KEY, '0');
       if (typeof fbq !== 'undefined') { fbq('track', 'Lead'); }
     }
 
-    var q = questions[p - 1];
-    renderQuestion(q, p);
+    renderQuestion(questions[p - 1], p);
   })();
 
+  /* ============================================================
+     INICIAR QUIZ (botão da tela de entrada)
+  ============================================================ */
+  function startQuiz() {
+    localStorage.removeItem(STORAGE_KEY);
+    window.location.href = 'quiz.html?p=1';
+  }
+
+  /* ============================================================
+     RENDER QUESTION
+  ============================================================ */
   function renderQuestion(q, p) {
     var pct = Math.round((p / 10) * 100);
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-text').textContent = 'Pregunta ' + p + ' de 10';
+    document.getElementById('progress-fill').style.width  = pct + '%';
+    document.getElementById('progress-text').textContent  = 'Pregunta ' + p + ' de 10';
     document.getElementById('question-number').textContent = 'Pregunta ' + p + ' de 10';
-    document.getElementById('question-text').textContent = q.text;
+    document.getElementById('question-text').textContent  = q.text;
 
     var list = document.getElementById('options-list');
     list.innerHTML = '';
@@ -384,19 +527,20 @@
       btn.innerHTML =
         '<span class="option-letter">' + LETTERS[i] + '</span>' +
         '<span>' + opt.text + '</span>';
-      btn.addEventListener('click', function() {
-        selectOption(p, opt.score);
-      });
+      btn.addEventListener('click', function() { selectOption(p, opt.score); });
       list.appendChild(btn);
     });
 
     /* Re-trigger slide-up animation */
     var block = document.getElementById('question-block');
     block.style.animation = 'none';
-    block.offsetHeight; /* force reflow */
+    block.offsetHeight;
     block.style.animation = 'slideUp 0.55s ease forwards';
   }
 
+  /* ============================================================
+     SELECT OPTION
+  ============================================================ */
   function selectOption(currentP, score) {
     var currentScore = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
     var newScore = currentScore + score;
