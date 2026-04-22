@@ -603,10 +603,161 @@
     .sp-toast-verified { font-size: 0.7rem; color: var(--cta); font-weight: 600; }
 
     /* ════════════════════════════════════════════════
+       PURCHASE POPUPS — top-right
+    ════════════════════════════════════════════════ */
+    #purchase-popup-wrap {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      max-width: 300px;
+      pointer-events: none;
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(120%); opacity: 0; }
+      to   { transform: translateX(0);    opacity: 1; }
+    }
+
+    .pu-popup {
+      background: #ffffff;
+      border-left: 4px solid #16a34a;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      padding: 14px 16px;
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateX(120%);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .pu-popup.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .pu-popup.hide {
+      opacity: 0;
+      transform: translateX(120%);
+    }
+
+    .pu-line1 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111111;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pu-line2 {
+      font-size: 13px;
+      color: #555555;
+      margin-bottom: 4px;
+    }
+
+    .pu-line3 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #16a34a;
+    }
+
+    /* ════════════════════════════════════════════════
+       FACEBOOK-STYLE COMMENTS
+    ════════════════════════════════════════════════ */
+    .fb-comments-section {
+      background: var(--bg);
+      padding: 40px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .fb-comments-count {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fb-comment {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .fb-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--card2);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .fb-comment-body { flex: 1; }
+
+    .fb-comment-header {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+
+    .fb-comment-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .fb-comment-time {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .fb-comment-text {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+
+    .fb-comment-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .fb-comment-actions .fb-act { cursor: pointer; font-weight: 600; }
+    .fb-comment-actions .fb-act:hover { color: var(--text); }
+
+    .fb-reactions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .fb-reply { margin-left: 50px; }
+
+    /* ════════════════════════════════════════════════
        RESPONSIVE
     ════════════════════════════════════════════════ */
     @media (max-width: 560px) {
       .c4-grid { grid-template-columns: 1fr; }
+      #purchase-popup-wrap { max-width: 260px; right: 12px; top: 12px; }
     }
   </style>
 </head>
@@ -780,11 +931,274 @@
     </div>
   </div>
 
+  <!-- C9: Facebook-style comments -->
+  <div class="fb-comments-section">
+    <div class="container">
+      <p class="fb-comments-count">3.158 comentarios</p>
+
+      <!-- Comentario 1 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">CR</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Carmen Rodríguez</span>
+            <span class="fb-comment-time">· 2h</span>
+          </div>
+          <p class="fb-comment-text">Pensé que era otro video aburrido de esos. Felicitaciones, Dr. Yoshida, por compartir algo que de verdad FUNCIONA.</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>2h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 23</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 2 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">MH</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Miguel Herrera</span>
+            <span class="fb-comment-time">· 35 min</span>
+          </div>
+          <p class="fb-comment-text">El Dr. Yoshida es increíble. Le recomendé el protocolo a mi papá y ya está notando la diferencia 🙌</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>35 min</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 17</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 3 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">PG</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Patricia Gómez</span>
+            <span class="fb-comment-time">· 7 min</span>
+          </div>
+          <p class="fb-comment-text">No se trata solo de los números. Me siento más cómoda conmigo misma, y eso es algo que no sentía hace mucho tiempo.</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>7 min</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 11</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 4 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">LF</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Lucía Fernández</span>
+            <span class="fb-comment-time">· 5 min</span>
+          </div>
+          <p class="fb-comment-text">¡Igual aquí! Mi esposo pensaba que estaba enferma porque empecé a recordar la mitad de las cosas que antes olvidaba 😂</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>5 min</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 5 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">JR</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Jorge Ramírez</span>
+            <span class="fb-comment-time">· 1h</span>
+          </div>
+          <p class="fb-comment-text">Sinceramente tenía mis dudas... ¿esto realmente funciona o es solo marketing?</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>1h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 54</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Respuesta indentada a comentario 5 -->
+      <div class="fb-comment fb-reply">
+        <div class="fb-avatar">CM</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Carlos Mendoza</span>
+            <span class="fb-comment-time">· 1h</span>
+          </div>
+          <p class="fb-comment-text">Jorge, yo también era muy escéptico, pero es real. Dale unos días y verás. Me sorprendió lo rápido que funcionó para mí.</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>1h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 76</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 6 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">AM</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Ana Martínez</span>
+            <span class="fb-comment-time">· 1h</span>
+          </div>
+          <p class="fb-comment-text">Al principio no estaba segura, pero ahora me siento increíble. Es como si mi mente hubiera presionado el botón de reinicio, jaja.</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>1h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 59</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 7 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">RD</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Roberto Díaz</span>
+            <span class="fb-comment-time">· 19 min</span>
+          </div>
+          <p class="fb-comment-text">Felicitaciones, Dr. Yoshida. Con tantas estafas en internet, es raro ver algo que de verdad ayude. Se lo merece todo el éxito 👏</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>19 min</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 35</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 8 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">GT</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Gabriela Torres</span>
+            <span class="fb-comment-time">· 2h</span>
+          </div>
+          <p class="fb-comment-text">Honestamente, lo he intentado todo. Pero nada tuvo un impacto tan positivo como lo que aprendí aquí. Me siento más ligera, con más energía y más presente. Gracias, Dr. Yoshida 💕</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>2h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 67</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 9 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">EV</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Eduardo Vargas</span>
+            <span class="fb-comment-time">· 2h</span>
+          </div>
+          <p class="fb-comment-text">Igual que todos aquí. Estaba cansado de los remedios rápidos que no sirven para nada. Esto es diferente.</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>2h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 44</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 10 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">SC</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Sofía Castillo</span>
+            <span class="fb-comment-time">· 2h</span>
+          </div>
+          <p class="fb-comment-text">¿Alguien más lo ha probado? ¿O soy la única que cree en esto? 😅</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>2h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 57</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 11 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">AM</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Andrés Morales</span>
+            <span class="fb-comment-time">· 1h</span>
+          </div>
+          <p class="fb-comment-text">Lo probé sin expectativas y estoy en shock. Con solo una semana ya me siento como una persona nueva. No sé lo que está pasando pero sigo adelante 😄</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>1h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 64</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 12 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">IR</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Isabel Reyes</span>
+            <span class="fb-comment-time">· 2h</span>
+          </div>
+          <p class="fb-comment-text">De verdad funciona. Llevo 2 meses siguiendo el protocolo y me siento como una persona NUEVA. Mucho menos estrés, más claridad mental. Es un cambio total.</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>2h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 39</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentario 13 -->
+      <div class="fb-comment">
+        <div class="fb-avatar">FL</div>
+        <div class="fb-comment-body">
+          <div class="fb-comment-header">
+            <span class="fb-comment-name">Fernando López</span>
+            <span class="fb-comment-time">· 2h</span>
+          </div>
+          <p class="fb-comment-text">Empecé ayer y ya noto la diferencia. Es literalmente como encender un interruptor 🤯</p>
+          <div class="fb-comment-actions">
+            <span class="fb-act">Me gusta</span>
+            <span class="fb-act">Responder</span>
+            <span>2h</span>
+            <span class="fb-reactions">👍 10 &nbsp;❤️ 37</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 <!-- /#zone-c -->
 
-<!-- Social proof container -->
+<!-- Social proof container (bottom-left) -->
 <div id="social-proof-wrap"></div>
+
+<!-- Purchase popup container (top-right) -->
+<div id="purchase-popup-wrap"></div>
 
 <footer>
   <p>© 2025 Protocolo Neuromax de Restauración Cognitiva. Todos los derechos reservados.</p>
@@ -814,9 +1228,14 @@
   }
 
   /* ── ZONE C visible immediately (delay removed for funnel analysis) ── */
-  startFinalTimer();
-  startLicenseCounter();
-  startSocialProof();
+  showSalesPage();
+
+  function showSalesPage() {
+    startFinalTimer();
+    startLicenseCounter();
+    startSocialProof();
+    startPurchasePopups();
+  }
 
   /* ── COUNTDOWN TIMER — 15 minutes ── */
   function startFinalTimer() {
@@ -920,6 +1339,62 @@
     }
 
     setTimeout(showToast, 8000);
+  }
+
+  /* ── PURCHASE POPUPS — top-right, every 10s ── */
+  var purchasePopupData = [
+    { name: 'Carmen Rodríguez',  location: 'Ciudad de México' },
+    { name: 'Miguel Herrera',    location: 'Bogotá' },
+    { name: 'Patricia Gómez',    location: 'Buenos Aires' },
+    { name: 'Eduardo Vargas',    location: 'Lima' },
+    { name: 'Lucía Fernández',   location: 'Santiago' },
+    { name: 'Roberto Díaz',      location: 'Guadalajara' },
+    { name: 'Andrés Morales',    location: 'Monterrey' },
+    { name: 'Isabel Reyes',      location: 'Medellín' },
+    { name: 'Sofía Castillo',    location: 'Caracas' },
+    { name: 'Fernando López',    location: 'Quito' },
+    { name: 'Gabriela Torres',   location: 'Santo Domingo' },
+    { name: 'Jorge Ramírez',     location: 'San José' },
+    { name: 'Ana Martínez',      location: 'Asunción' },
+    { name: 'Carlos Mendoza',    location: 'La Paz' },
+    { name: 'Valentina Cruz',    location: 'Montevideo' }
+  ];
+
+  function startPurchasePopups() {
+    var idx = 0;
+    var wrap = document.getElementById('purchase-popup-wrap');
+    if (!wrap) return;
+
+    function showPopup() {
+      if (idx >= purchasePopupData.length) { idx = 0; }
+      var person = purchasePopupData[idx++];
+
+      while (wrap.firstChild) { wrap.removeChild(wrap.firstChild); }
+
+      var popup = document.createElement('div');
+      popup.className = 'pu-popup';
+      popup.innerHTML =
+        '<div class="pu-line1">🛒 <span>' + person.name + '</span></div>' +
+        '<div class="pu-line2">' + person.location + ' · Acabo de acceder al Protocolo Neuromax 🧠</div>' +
+        '<div class="pu-line3">✅ Compra verificada · agora mesmo</div>';
+
+      wrap.appendChild(popup);
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { popup.classList.add('show'); });
+      });
+
+      setTimeout(function() {
+        popup.classList.remove('show');
+        popup.classList.add('hide');
+        setTimeout(function() {
+          if (popup.parentNode) { popup.parentNode.removeChild(popup); }
+        }, 400);
+      }, 6000);
+
+      setTimeout(showPopup, 10000);
+    }
+
+    showPopup();
   }
 </script>
 </body>
