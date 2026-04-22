@@ -163,7 +163,7 @@
        ZONA C — SALES SECTION (hidden until delay)
     ════════════════════════════════════════════════ */
     #zone-c {
-      display: none;
+      display: block;
     }
 
     /* C1 — Headline */
@@ -828,24 +828,10 @@
   /* Fire ViewContent on load */
   if (typeof fbq !== 'undefined') { fbq('track', 'ViewContent'); }
 
-  /* ── REVEAL ZONE C after 1,161,000ms (19m21s) ── */
-  setTimeout(function() {
-    var zoneC = document.getElementById('zone-c');
-    zoneC.style.opacity = '0';
-    zoneC.style.display = 'block';
-    requestAnimationFrame(function() {
-      zoneC.style.transition = 'opacity 0.7s ease';
-      zoneC.style.opacity = '1';
-      setTimeout(function() { zoneC.style.transition = ''; }, 700);
-    });
-    setTimeout(function() {
-      zoneC.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 200);
-
-    startFinalTimer();
-    startLicenseCounter();
-    startSocialProof();
-  }, 1161000);
+  /* ── ZONE C visible immediately (delay removed for funnel analysis) ── */
+  startFinalTimer();
+  startLicenseCounter();
+  startSocialProof();
 
   /* ── COUNTDOWN TIMER — 15 minutes ── */
   function startFinalTimer() {
