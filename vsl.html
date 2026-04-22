@@ -263,7 +263,7 @@
 
     #license-count.blink-red { animation: blinkRed 1s infinite; }
 
-    /* C4 — Objection cards */
+    /* C4 — FAQ Accordion */
     .c4-section {
       background: var(--bg2);
       padding: 70px 20px;
@@ -278,38 +278,74 @@
       color: var(--text);
     }
 
-    .c4-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      max-width: 860px;
+    .faq-list {
+      max-width: 720px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .c4-card {
+    .faq-item {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .c4-card-q {
+    .faq-item.open {
+      border-color: var(--gold);
+    }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.94rem;
+      font-size: clamp(0.88rem, 2vw, 0.98rem);
       font-weight: 800;
-      color: var(--gold);
-      margin-bottom: 12px;
+      text-align: left;
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: color 0.2s;
       line-height: 1.35;
     }
 
-    .c4-card-a {
-      font-size: 0.88rem;
-      color: #ccc;
-      line-height: 1.7;
+    .faq-btn:hover { color: var(--gold); }
+    .faq-item.open .faq-btn { color: var(--gold); }
+
+    .faq-arrow {
+      flex-shrink: 0;
+      font-size: 0.82rem;
+      color: var(--gold);
+      transition: transform 0.3s ease;
     }
 
-    /* C5 — Testimonials */
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.38s ease, padding 0.3s ease;
+      padding: 0 24px;
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.75;
+      border-top: 0px solid var(--border);
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* C5 — Testimonials (vertical stack) */
     .c5-section {
       background: var(--bg);
       padding: 70px 20px;
@@ -330,29 +366,20 @@
       margin-bottom: 36px;
     }
 
-    .c5-scroll {
+    .c5-stack {
       display: flex;
-      gap: 18px;
-      overflow-x: auto;
-      padding-bottom: 16px;
-      max-width: 860px;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 680px;
       margin: 0 auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
     }
-
-    .c5-scroll::-webkit-scrollbar { height: 5px; }
-    .c5-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 99px; }
-    .c5-scroll::-webkit-scrollbar-thumb { background: var(--cta); border-radius: 99px; }
 
     .c5-card {
       background: var(--card);
       border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
       border-radius: 14px;
       padding: 24px;
-      min-width: 280px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
       box-shadow: 0 2px 16px rgba(0,0,0,0.3);
     }
 
@@ -521,68 +548,6 @@
     }
 
     /* ════════════════════════════════════════════════
-       ZONA D — FOOTER (always visible)
-    ════════════════════════════════════════════════ */
-    .zone-d {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 40px 20px;
-    }
-
-    .zone-d-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .zone-d-scroll {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      max-width: 860px;
-      margin: 0 auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .zone-d-scroll::-webkit-scrollbar { height: 4px; }
-    .zone-d-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 99px; }
-    .zone-d-scroll::-webkit-scrollbar-thumb { background: var(--cta-dark); border-radius: 99px; }
-
-    .zone-d-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px 20px;
-      min-width: 240px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-    }
-
-    .zone-d-stars { color: var(--gold); font-size: 0.82rem; margin-bottom: 6px; }
-
-    .zone-d-name {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 0.82rem;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .zone-d-text {
-      font-size: 0.81rem;
-      color: #bbb;
-      line-height: 1.6;
-      font-style: italic;
-    }
-
-    /* ════════════════════════════════════════════════
        SOCIAL PROOF TOAST
     ════════════════════════════════════════════════ */
     #social-proof-wrap {
@@ -684,65 +649,77 @@
     <p>⚡ Solo quedan <strong id="license-count">84</strong> accesos disponibles a este precio.</p>
   </div>
 
-  <!-- C4: Objection-breaking cards -->
+  <!-- C4: FAQ Accordion -->
   <div class="c4-section">
     <div class="container">
       <h2 class="c4-title">Tus preguntas, respondidas</h2>
-      <div class="c4-grid">
+      <div class="faq-list">
 
-        <div class="c4-card">
-          <p class="c4-card-q">¿Es realmente natural y sin efectos secundarios?</p>
-          <p class="c4-card-a">Sí. El Protocolo Neuromax de Restauración Cognitiva utiliza únicamente compuestos herbales con respaldo científico: ácido rosmarínico, fosfatidilserina, curcumina y resveratrol. Ningún medicamento, ninguna receta, ningún efecto secundario reportado en más de 4.000 pacientes.</p>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Es realmente natural y sin efectos secundarios?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">Sí. El Protocolo Neuromax de Restauración Cognitiva utiliza únicamente compuestos herbales con respaldo científico: ácido rosmarínico, fosfatidilserina, curcumina y resveratrol. Ningún medicamento, ninguna receta, ningún efecto secundario reportado en más de 4.000 pacientes.</div>
         </div>
 
-        <div class="c4-card">
-          <p class="c4-card-q">¿Funciona para personas mayores de 70 años?</p>
-          <p class="c4-card-a">Absolutamente. El protocolo fue diseñado específicamente para adultos mayores. Nuestros pacientes van de los 45 a los 92 años, y los resultados más sorprendentes vinieron de personas mayores de 75.</p>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Funciona para personas mayores de 70 años?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">Absolutamente. El protocolo fue diseñado específicamente para adultos mayores. Nuestros pacientes van de los 45 a los 92 años, y los resultados más sorprendentes vinieron de personas mayores de 75.</div>
         </div>
 
-        <div class="c4-card">
-          <p class="c4-card-q">¿Cuánto tiempo hasta ver resultados?</p>
-          <p class="c4-card-a">Muchos usuarios reportan mejoras en claridad mental en los primeros 7 días. La restauración cognitiva profunda ocurre en el período de 90 días del protocolo completo.</p>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Cuánto tiempo hasta ver resultados?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">Muchos usuarios reportan mejoras en claridad mental en los primeros 7 días. La restauración cognitiva profunda ocurre en el período de 90 días del protocolo completo.</div>
         </div>
 
-        <div class="c4-card">
-          <p class="c4-card-q">¿Y si no funciona para mí?</p>
-          <p class="c4-card-a">Tienes 30 días de garantía total. Si no sientes diferencia, escríbenos y recibes el 100% de tu dinero de vuelta. Sin preguntas, sin trámites, sin riesgo.</p>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            ¿Y si no funciona para mí?
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">Tienes 30 días de garantía total. Si no sientes diferencia, escríbenos y recibes el 100% de tu dinero de vuelta. Sin preguntas, sin trámites, sin riesgo.</div>
         </div>
 
       </div>
     </div>
   </div>
 
-  <!-- C5: Testimonials scroll -->
+  <!-- C5: Testimonials (vertical stack) -->
   <div class="c5-section">
     <div class="container">
       <h2 class="c5-title">Lo que dicen nuestros pacientes</h2>
       <p class="c5-sub">Resultados reales de personas reales</p>
-    </div>
-    <div class="c5-scroll">
+      <div class="c5-stack">
 
-      <div class="c5-card">
-        <p class="c5-stars">★★★★★</p>
-        <p class="c5-name">Carlos M., hijo de paciente</p>
-        <p class="c5-role">Bogotá, Colombia</p>
-        <p class="c5-text">"Mi papá está muchísimo mejor en solo dos semanas. Tiene 82 años y ya volvió a hacer sus crucigramas. Su razonamiento y respuestas son mucho más rápidos. Gracias, Dr. Yoshida."</p>
+        <div class="c5-card">
+          <p class="c5-stars">★★★★★</p>
+          <p class="c5-name">Carlos M., hijo de paciente</p>
+          <p class="c5-role">Bogotá, Colombia</p>
+          <p class="c5-text">"Mi papá está muchísimo mejor en solo dos semanas. Tiene 82 años y ya volvió a hacer sus crucigramas. Su razonamiento y respuestas son mucho más rápidos. Gracias, Dr. Yoshida."</p>
+        </div>
+
+        <div class="c5-card">
+          <p class="c5-stars">★★★★★</p>
+          <p class="c5-name">Roberto A., 73 años</p>
+          <p class="c5-role">Compositor retirado — Buenos Aires, Argentina</p>
+          <p class="c5-text">"Llevo tres semanas y ya siento una gran diferencia en mi razonamiento y en la velocidad de mis pensamientos. Recuperé la confianza para seguir con mi música. Gracias, Dr. Yoshida."</p>
+        </div>
+
+        <div class="c5-card">
+          <p class="c5-stars">★★★★★</p>
+          <p class="c5-name">María G., 68 años</p>
+          <p class="c5-role">Ciudad de México, México</p>
+          <p class="c5-text">"Mi memoria se siente muchísimo más aguda. Mi esposo se sorprendió cuando le describí el vestido que usé en mi graduación hace 52 años. Ojalá hubiera empezado antes."</p>
+        </div>
+
       </div>
-
-      <div class="c5-card">
-        <p class="c5-stars">★★★★★</p>
-        <p class="c5-name">Roberto A., 73 años</p>
-        <p class="c5-role">Compositor retirado — Buenos Aires, Argentina</p>
-        <p class="c5-text">"Llevo tres semanas y ya siento una gran diferencia en mi razonamiento y en la velocidad de mis pensamientos. Recuperé la confianza para seguir con mi música. Gracias, Dr. Yoshida."</p>
-      </div>
-
-      <div class="c5-card">
-        <p class="c5-stars">★★★★★</p>
-        <p class="c5-name">María G., 68 años</p>
-        <p class="c5-role">Ciudad de México, México</p>
-        <p class="c5-text">"Mi memoria se siente muchísimo más aguda. Mi esposo se sorprendió cuando le describí el vestido que usé en mi graduación hace 52 años. Ojalá hubiera empezado antes."</p>
-      </div>
-
     </div>
   </div>
 
@@ -790,34 +767,6 @@
 </div>
 <!-- /#zone-c -->
 
-<!-- ════════════════════════════════════════════════
-     ZONA D — FOOTER TESTIMONIALS (always visible)
-════════════════════════════════════════════════ -->
-<section class="zone-d">
-  <p class="zone-d-title">Lo que dicen quienes ya empezaron</p>
-  <div class="zone-d-scroll">
-
-    <div class="zone-d-card">
-      <p class="zone-d-stars">★★★★★</p>
-      <p class="zone-d-name">Carlos M. — Bogotá</p>
-      <p class="zone-d-text">"Mi papá tiene 82 años y ya volvió a hacer sus crucigramas. Su razonamiento es mucho más rápido."</p>
-    </div>
-
-    <div class="zone-d-card">
-      <p class="zone-d-stars">★★★★★</p>
-      <p class="zone-d-name">Roberto A. — Buenos Aires</p>
-      <p class="zone-d-text">"Tres semanas y ya siento una gran diferencia. Recuperé la confianza para seguir con mi música."</p>
-    </div>
-
-    <div class="zone-d-card">
-      <p class="zone-d-stars">★★★★★</p>
-      <p class="zone-d-name">María G. — Ciudad de México</p>
-      <p class="zone-d-text">"Mi memoria se siente muchísimo más aguda. Ojalá hubiera empezado antes."</p>
-    </div>
-
-  </div>
-</section>
-
 <!-- Social proof container -->
 <div id="social-proof-wrap"></div>
 
@@ -827,6 +776,14 @@
 <script>
   /* Fire ViewContent on load */
   if (typeof fbq !== 'undefined') { fbq('track', 'ViewContent'); }
+
+  /* ── FAQ ACCORDION ── */
+  function toggleFaq(btn) {
+    var item = btn.parentElement;
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('open'); });
+    if (!isOpen) { item.classList.add('open'); }
+  }
 
   /* ── ZONE C visible immediately (delay removed for funnel analysis) ── */
   startFinalTimer();
