@@ -36,17 +36,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0a0a0a;
-      --bg2:      #111111;
-      --card:     #1a1a1a;
-      --card2:    #222222;
-      --text:     #ffffff;
-      --muted:    #aaaaaa;
-      --cta:      #22c55e;
-      --cta-dark: #16a34a;
-      --gold:     #fbbf24;
-      --danger:   #ef4444;
-      --border:   #2a2a2a;
+      --bg:       #ffffff;
+      --bg2:      #f5f5f5;
+      --card:     #f0f0f0;
+      --card2:    #e8e8e8;
+      --text:     #111111;
+      --muted:    #555555;
+      --cta:      #16a34a;
+      --cta-dark: #15803d;
+      --gold:     #b45309;
+      --danger:   #dc2626;
+      --border:   #d4d4d4;
     }
 
     html { scroll-behavior: smooth; }
@@ -75,9 +75,9 @@
       to   { opacity: 1; }
     }
     @keyframes pulseRing {
-      0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.5); }
-      70%  { box-shadow: 0 0 0 18px rgba(34,197,94,0); }
-      100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+      0%   { box-shadow: 0 0 0 0   rgba(22,163,74,0.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(22,163,74,0); }
+      100% { box-shadow: 0 0 0 0   rgba(22,163,74,0); }
     }
 
     /* ════════════════════════════════════════════════
@@ -131,7 +131,7 @@
     .btn-start {
       width: 100%;
       background: var(--cta);
-      color: #fff;
+      color: var(--bg);
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-size: 1.05rem;
@@ -193,7 +193,7 @@
 
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--cta), #4ade80);
+      background: linear-gradient(90deg, var(--cta), var(--cta-dark));
       border-radius: 99px;
       transition: width 0.55s cubic-bezier(.4,0,.2,1);
     }
@@ -272,7 +272,7 @@
 
     .option-btn:hover {
       border-color: var(--cta);
-      background: rgba(34,197,94,0.07);
+      background: rgba(22,163,74,0.07);
       transform: translateX(5px);
     }
 
@@ -296,7 +296,7 @@
     .option-btn:hover .option-letter {
       background: var(--cta);
       border-color: var(--cta);
-      color: #000;
+      color: var(--bg);
     }
 
     @media (max-width: 480px) {

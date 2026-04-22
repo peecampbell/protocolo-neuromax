@@ -36,17 +36,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0a0a0a;
-      --bg2:      #111111;
-      --card:     #1a1a1a;
-      --card2:    #222222;
-      --text:     #ffffff;
-      --muted:    #aaaaaa;
-      --cta:      #22c55e;
-      --cta-dark: #16a34a;
-      --gold:     #fbbf24;
-      --danger:   #ef4444;
-      --border:   #2a2a2a;
+      --bg:       #ffffff;
+      --bg2:      #f5f5f5;
+      --card:     #f0f0f0;
+      --card2:    #e8e8e8;
+      --text:     #111111;
+      --muted:    #555555;
+      --cta:      #16a34a;
+      --cta-dark: #15803d;
+      --gold:     #b45309;
+      --danger:   #dc2626;
+      --border:   #d4d4d4;
     }
 
     html { scroll-behavior: smooth; }
@@ -160,9 +160,9 @@
       margin-bottom: 22px;
     }
 
-    .badge-low   { background: rgba(34,197,94,0.15); border: 1px solid var(--cta); color: var(--cta); }
-    .badge-mid   { background: rgba(249,115,22,0.15); border: 1px solid #f97316;   color: #f97316; }
-    .badge-high  { background: rgba(239,68,68,0.15);  border: 1px solid var(--danger); color: var(--danger); }
+    .badge-low   { background: rgba(22,163,74,0.15);  border: 1px solid var(--cta);    color: var(--cta); }
+    .badge-mid   { background: rgba(180,83,9,0.15);   border: 1px solid var(--gold);   color: var(--gold); }
+    .badge-high  { background: rgba(220,38,38,0.15);  border: 1px solid var(--danger); color: var(--danger); }
 
     .result-title {
       font-family: 'Montserrat', sans-serif;
@@ -185,7 +185,7 @@
 
     .result-text {
       font-size: 0.96rem;
-      color: #d1d5db;
+      color: var(--muted);
       line-height: 1.8;
       text-align: center;
     }
@@ -221,15 +221,15 @@
 
     /* CTA */
     @keyframes pulseRing {
-      0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.5); }
-      70%  { box-shadow: 0 0 0 18px rgba(34,197,94,0); }
-      100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+      0%   { box-shadow: 0 0 0 0   rgba(22,163,74,0.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(22,163,74,0); }
+      100% { box-shadow: 0 0 0 0   rgba(22,163,74,0); }
     }
 
     .btn-cta-result {
       display: block;
       background: var(--cta);
-      color: #000;
+      color: var(--bg);
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-size: 1.05rem;
@@ -243,7 +243,7 @@
       letter-spacing: 0.3px;
       line-height: 1.35;
       transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 30px rgba(34,197,94,0.35);
+      box-shadow: 0 4px 30px rgba(22,163,74,0.35);
       animation: pulseRing 2s infinite;
     }
 

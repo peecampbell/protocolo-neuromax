@@ -36,17 +36,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0a0a0a;
-      --bg2:      #111111;
-      --card:     #1a1a1a;
-      --card2:    #222222;
-      --text:     #ffffff;
-      --muted:    #aaaaaa;
-      --cta:      #22c55e;
-      --cta-dark: #16a34a;
-      --gold:     #fbbf24;
-      --danger:   #ef4444;
-      --border:   #2a2a2a;
+      --bg:       #ffffff;
+      --bg2:      #f5f5f5;
+      --card:     #f0f0f0;
+      --card2:    #e8e8e8;
+      --text:     #111111;
+      --muted:    #555555;
+      --cta:      #16a34a;
+      --cta-dark: #15803d;
+      --gold:     #b45309;
+      --danger:   #dc2626;
+      --border:   #d4d4d4;
     }
 
     html { scroll-behavior: smooth; }
@@ -68,17 +68,17 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes pulseRing {
-      0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.5); }
-      70%  { box-shadow: 0 0 0 18px rgba(34,197,94,0); }
-      100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+      0%   { box-shadow: 0 0 0 0   rgba(22,163,74,0.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(22,163,74,0); }
+      100% { box-shadow: 0 0 0 0   rgba(22,163,74,0); }
     }
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50%       { opacity: 0.25; }
     }
     @keyframes blinkRed {
-      0%, 100% { color: #fff; }
-      50%       { color: #ff3333; }
+      0%, 100% { color: var(--text); }
+      50%       { color: var(--danger); }
     }
 
     .container {
@@ -131,7 +131,7 @@
        ZONA B — VIDEO PLAYER
     ════════════════════════════════════════════════ */
     .zone-b {
-      background: #000;
+      background: var(--card2);
       padding: 40px 20px;
       display: flex;
       justify-content: center;
@@ -146,7 +146,7 @@
       position: relative;
       width: 100%;
       padding-top: 56.25%; /* 16:9 */
-      background: #050505;
+      background: var(--card2);
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 12px 60px rgba(0,0,0,0.8);
@@ -176,7 +176,7 @@
 
     .c1-badge {
       display: inline-block;
-      background: rgba(34,197,94,0.12);
+      background: rgba(22,163,74,0.12);
       border: 1px solid var(--cta);
       color: var(--cta);
       font-size: 0.72rem;
@@ -202,7 +202,7 @@
 
     /* C2 — Urgency bar */
     .c2-urgency {
-      background: #1a0a00;
+      background: var(--card2);
       border-top: 2px solid var(--gold);
       border-bottom: 2px solid var(--gold);
       padding: 20px;
@@ -216,13 +216,13 @@
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(0.82rem, 2.5vw, 1rem);
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 6px;
     }
 
     .c2-timer-label {
       font-size: 0.78rem;
-      color: rgba(255,255,255,0.7);
+      color: var(--muted);
       margin-bottom: 6px;
     }
 
@@ -237,7 +237,7 @@
 
     .c2-note {
       font-size: 0.76rem;
-      color: rgba(255,255,255,0.6);
+      color: var(--muted);
       margin-top: 6px;
     }
 
@@ -334,7 +334,7 @@
       transition: max-height 0.38s ease, padding 0.3s ease;
       padding: 0 24px;
       font-size: 0.9rem;
-      color: #ccc;
+      color: var(--muted);
       line-height: 1.75;
       border-top: 0px solid var(--border);
     }
@@ -397,7 +397,7 @@
 
     .c5-text {
       font-size: 0.88rem;
-      color: #ccc;
+      color: var(--muted);
       line-height: 1.7;
       font-style: italic;
     }
@@ -423,7 +423,7 @@
       max-width: 420px;
       margin: 0 auto 28px;
       padding: 36px 28px;
-      box-shadow: 0 8px 40px rgba(251,191,36,0.15);
+      box-shadow: 0 8px 40px rgba(180,83,9,0.15);
     }
 
     .c6-product-name {
@@ -442,7 +442,7 @@
       margin-bottom: 4px;
     }
 
-    .c6-price-from s { color: #666; }
+    .c6-price-from s { color: var(--muted); }
 
     .c6-price-big {
       font-family: 'Montserrat', sans-serif;
@@ -472,7 +472,7 @@
 
     .c6-checklist li {
       font-size: 0.88rem;
-      color: #d1d5db;
+      color: var(--muted);
       font-weight: 600;
     }
 
@@ -490,7 +490,7 @@
     .btn-checkout {
       display: block;
       background: var(--cta);
-      color: #000;
+      color: var(--bg);
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-size: 1.1rem;
@@ -505,7 +505,7 @@
       letter-spacing: 0.3px;
       line-height: 1.35;
       transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 30px rgba(34,197,94,0.4);
+      box-shadow: 0 4px 30px rgba(22,163,74,0.4);
       animation: pulseRing 2s infinite;
     }
 
@@ -522,9 +522,9 @@
 
     /* C8 — Guarantee */
     .c8-section {
-      background: #050f08;
-      border-top: 1px solid rgba(34,197,94,0.2);
-      border-bottom: 1px solid rgba(34,197,94,0.2);
+      background: var(--bg2);
+      border-top: 1px solid rgba(22,163,74,0.2);
+      border-bottom: 1px solid rgba(22,163,74,0.2);
       padding: 60px 20px;
       text-align: center;
     }
@@ -541,7 +541,7 @@
 
     .c8-text {
       font-size: 0.95rem;
-      color: #ccc;
+      color: var(--muted);
       max-width: 560px;
       margin: 0 auto;
       line-height: 1.8;
@@ -551,16 +551,16 @@
        FOOTER
     ════════════════════════════════════════════════ */
     footer {
-      background: #050505;
+      background: var(--bg2);
       padding: 30px 20px;
       text-align: center;
-      color: #555;
+      color: var(--muted);
       font-size: 0.78rem;
       border-top: 1px solid var(--border);
       line-height: 1.7;
     }
 
-    footer a { color: #777; text-decoration: none; }
+    footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--muted); }
 
     /* ════════════════════════════════════════════════
@@ -580,7 +580,7 @@
     }
 
     .sp-toast {
-      background: #fff;
+      background: var(--bg);
       border-radius: 12px;
       border-left: 4px solid var(--cta);
       box-shadow: 0 4px 20px rgba(0,0,0,0.18);
@@ -598,8 +598,8 @@
     .sp-toast.show { opacity: 1; transform: translateX(0); }
 
     .sp-toast-icon { font-size: 1.4rem; flex-shrink: 0; }
-    .sp-toast-name { font-size: 0.8rem; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
-    .sp-toast-action { font-size: 0.76rem; color: #555; margin-bottom: 2px; }
+    .sp-toast-name { font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .sp-toast-action { font-size: 0.76rem; color: var(--muted); margin-bottom: 2px; }
     .sp-toast-verified { font-size: 0.7rem; color: var(--cta); font-weight: 600; }
 
     /* ════════════════════════════════════════════════
