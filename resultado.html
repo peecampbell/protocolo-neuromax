@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu Diagnóstico Cognitivo — Protocolo Neuromax</title>
+
+  <!-- META PIXEL — Substituir SEU_PIXEL_ID_AQUI pelo ID real -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID_AQUI'); /* INSERIR META PIXEL ID AQUI */
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"/></noscript>
+
+  <!-- UTMify — Substituir SEU_UTMIFY_ID_AQUI pelo ID real -->
+  <script>
+    window.pixelId = "SEU_UTMIFY_ID_AQUI"; /* INSERIR UTMify PIXEL ID AQUI */
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg2:      #111111;
+      --card:     #1a1a1a;
+      --card2:    #222222;
+      --text:     #ffffff;
+      --muted:    #aaaaaa;
+      --cta:      #22c55e;
+      --cta-dark: #16a34a;
+      --gold:     #fbbf24;
+      --danger:   #ef4444;
+      --border:   #2a2a2a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px 60px;
+    }
+
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* ── SPINNER ── */
+    .spinner-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .spinner-ring {
+      width: 64px;
+      height: 64px;
+      border: 5px solid var(--border);
+      border-top-color: var(--cta);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    .spinner-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .spinner-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      max-width: 320px;
+      line-height: 1.6;
+    }
+
+    /* ── RESULT BLOCK ── */
+    .result-wrap {
+      display: none;
+      max-width: 640px;
+      width: 100%;
+      animation: fadeIn 0.7s ease forwards;
+    }
+
+    .result-page-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1rem, 2.8vw, 1.3rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 32px;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .result-page-title .hl { color: var(--gold); }
+
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      margin-bottom: 28px;
+    }
+
+    .result-card-top {
+      padding: 28px 28px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .risk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 99px;
+      margin-bottom: 22px;
+    }
+
+    .badge-low   { background: rgba(34,197,94,0.15); border: 1px solid var(--cta); color: var(--cta); }
+    .badge-mid   { background: rgba(249,115,22,0.15); border: 1px solid #f97316;   color: #f97316; }
+    .badge-high  { background: rgba(239,68,68,0.15);  border: 1px solid var(--danger); color: var(--danger); }
+
+    .result-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.15rem, 3vw, 1.55rem);
+      font-weight: 900;
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    .result-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0 0;
+    }
+
+    .result-card-body {
+      padding: 24px 28px 32px;
+    }
+
+    .result-text {
+      font-size: 0.96rem;
+      color: #d1d5db;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    /* Score display */
+    .score-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .score-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .score-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .score-max {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* CTA */
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+    }
+
+    .btn-cta-result {
+      display: block;
+      background: var(--cta);
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border: none;
+      border-radius: 10px;
+      padding: 20px 32px;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      letter-spacing: 0.3px;
+      line-height: 1.35;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 30px rgba(34,197,94,0.35);
+      animation: pulseRing 2s infinite;
+    }
+
+    .btn-cta-result:hover {
+      background: var(--cta-dark);
+      transform: scale(1.02);
+    }
+
+    .cta-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .result-card-top, .result-card-body { padding-left: 20px; padding-right: 20px; }
+      .btn-cta-result { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SPINNER -->
+<div class="spinner-wrap" id="spinner-wrap">
+  <div class="spinner-ring"></div>
+  <h2 class="spinner-title">Analizando tus respuestas...</h2>
+  <p class="spinner-sub">Estamos procesando tu perfil cognitivo para darte un diagnóstico personalizado.</p>
+</div>
+
+<!-- RESULT (oculto inicialmente) -->
+<div class="result-wrap" id="result-wrap">
+
+  <h1 class="result-page-title">
+    Tu diagnóstico cognitivo <span class="hl">está listo</span>
+  </h1>
+
+  <div class="result-card" id="result-card">
+    <div class="result-card-top">
+      <div class="score-display">
+        <span class="score-label">Tu puntuación</span>
+        <span class="score-number" id="score-display-num">0</span>
+        <span class="score-max">de 40 puntos</span>
+      </div>
+      <span class="risk-badge" id="risk-badge"></span>
+      <h2 class="result-title" id="result-title"></h2>
+      <div class="result-divider"></div>
+    </div>
+    <div class="result-card-body">
+      <p class="result-text" id="result-text"></p>
+    </div>
+  </div>
+
+  <button class="btn-cta-result" onclick="goToVSL()">
+    ▶ VER MIS RESULTADOS COMPLETOS AHORA
+  </button>
+  <p class="cta-note">El Dr. Yoshida tiene un mensaje urgente basado en tu perfil</p>
+
+</div>
+
+<script>
+  /* ============================================================
+     PROFILES
+  ============================================================ */
+  var profiles = {
+    low: {
+      badgeClass : 'badge-low',
+      badgeText  : '✓ RIESGO BAJO',
+      titleColor : 'var(--cta)',
+      title      : 'Tu cerebro está en buena forma, pero el tiempo no espera.',
+      text       : 'Por ahora, tu memoria funciona bien y eso es una excelente noticia. Pero los datos son claros: después de los 45 años, los niveles de BDNF, la proteína que protege tu cerebro, comienzan a caer silenciosamente. No esperes a sentir los síntomas para actuar. Lo que descubrirás en el siguiente video puede ser la diferencia entre mantener tu mente aguda por décadas o empezar a perderla sin darte cuenta.'
+    },
+    mid: {
+      badgeClass : 'badge-mid',
+      badgeText  : '⚠ RIESGO MODERADO',
+      titleColor : '#f97316',
+      title      : 'Tu cerebro está enviando señales. Es momento de escucharlas.',
+      text       : 'Tus respuestas revelan que ya estás experimentando señales tempranas de deterioro cognitivo. No son coincidencias ni simple cansancio. Son señales de que las neurotoxinas están comenzando a acumularse en tu cerebro y que tus niveles de BDNF están cayendo. La buena noticia es que estás a tiempo. En el siguiente video, el Dr. Yoshida explica exactamente por qué esto está pasando y el protocolo natural que ya ha ayudado a miles de personas en tu misma situación.'
+    },
+    high: {
+      badgeClass : 'badge-high',
+      badgeText  : '⛔ RIESGO ALTO',
+      titleColor : 'var(--danger)',
+      title      : 'Tu cerebro necesita ayuda ahora. Cada día que pasa importa.',
+      text       : 'Tus respuestas son una señal de alerta seria. Lo que estás viviendo no es normal ni inevitable, pero sí es urgente. Las neurotoxinas llevan tiempo atacando tus neuronas, y sin intervención, el deterioro puede avanzar más rápido de lo que imaginas. El Dr. Yoshida ha desarrollado un protocolo específicamente para personas en tu situación, con resultados documentados en miles de pacientes.'
+    }
+  };
+
+  /* ============================================================
+     INIT
+  ============================================================ */
+  (function init() {
+    var params = new URLSearchParams(window.location.search);
+    var score  = parseInt(params.get('score'), 10);
+
+    if (isNaN(score) || score < 0) {
+      window.location.href = 'quiz.html?p=1';
+      return;
+    }
+
+    /* Fire CompleteRegistration pixel */
+    if (typeof fbq !== 'undefined') { fbq('track', 'CompleteRegistration'); }
+
+    /* Show spinner for 3 seconds, then reveal result */
+    setTimeout(function() {
+      showResult(score);
+    }, 3000);
+  })();
+
+  function showResult(score) {
+    /* Hide spinner */
+    document.getElementById('spinner-wrap').style.display = 'none';
+
+    /* Determine profile */
+    var profile;
+    if      (score <= 10) { profile = profiles.low;  }
+    else if (score <= 25) { profile = profiles.mid;  }
+    else                  { profile = profiles.high; }
+
+    /* Populate */
+    document.getElementById('score-display-num').textContent = score;
+    document.getElementById('score-display-num').style.color = profile.titleColor;
+
+    var badge = document.getElementById('risk-badge');
+    badge.className = 'risk-badge ' + profile.badgeClass;
+    badge.textContent = profile.badgeText;
+
+    var titleEl = document.getElementById('result-title');
+    titleEl.textContent = profile.title;
+    titleEl.style.color = profile.titleColor;
+
+    document.getElementById('result-text').textContent = profile.text;
+
+    /* Show result */
+    var wrap = document.getElementById('result-wrap');
+    wrap.style.display = 'block';
+  }
+
+  function goToVSL() {
+    window.location.href = 'vsl.html';
+  }
+</script>
+</body>
+</html>

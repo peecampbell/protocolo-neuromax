@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protocolo Neuromax — Restauración Cognitiva Natural</title>
+
+  <!-- META PIXEL — Substituir SEU_PIXEL_ID_AQUI pelo ID real -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID_AQUI'); /* INSERIR META PIXEL ID AQUI */
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"/></noscript>
+
+  <!-- UTMify — Substituir SEU_UTMIFY_ID_AQUI pelo ID real -->
+  <script>
+    window.pixelId = "SEU_UTMIFY_ID_AQUI"; /* INSERIR UTMify PIXEL ID AQUI */
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg2:      #111111;
+      --card:     #1a1a1a;
+      --card2:    #222222;
+      --text:     #ffffff;
+      --muted:    #aaaaaa;
+      --cta:      #22c55e;
+      --cta-dark: #16a34a;
+      --gold:     #fbbf24;
+      --danger:   #ef4444;
+      --border:   #2a2a2a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
+    img { max-width: 100%; display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.25; }
+    }
+    @keyframes blinkRed {
+      0%, 100% { color: #fff; }
+      50%       { color: #ff3333; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ════════════════════════════════════════════════
+       ZONA A — HEADER
+    ════════════════════════════════════════════════ */
+    .zone-a {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 20px 32px;
+      text-align: center;
+    }
+
+    .zone-a-overtitle {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .zone-a-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: 900;
+      color: var(--text);
+      max-width: 720px;
+      margin: 0 auto 14px;
+      line-height: 1.3;
+    }
+
+    .zone-a-title .hl { color: var(--gold); }
+
+    .zone-a-sub {
+      font-size: clamp(0.88rem, 2vw, 1rem);
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════════
+       ZONA B — VIDEO PLAYER
+    ════════════════════════════════════════════════ */
+    .zone-b {
+      background: #000;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .player-outer {
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .player-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #050505;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.8);
+    }
+
+    .player-container iframe,
+    .player-container > * {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* ════════════════════════════════════════════════
+       ZONA C — SALES SECTION (hidden until delay)
+    ════════════════════════════════════════════════ */
+    #zone-c {
+      display: none;
+    }
+
+    /* C1 — Headline */
+    .c1-section {
+      background: var(--bg2);
+      padding: 70px 20px 50px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .c1-badge {
+      display: inline-block;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid var(--cta);
+      color: var(--cta);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 22px;
+    }
+
+    .c1-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.35rem, 4vw, 2.2rem);
+      font-weight: 900;
+      max-width: 760px;
+      margin: 0 auto 16px;
+      line-height: 1.25;
+    }
+
+    .c1-title .hl-gold   { color: var(--gold); }
+    .c1-title .hl-green  { color: var(--cta); }
+
+    /* C2 — Urgency bar */
+    .c2-urgency {
+      background: #1a0a00;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .c2-urgency-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.82rem, 2.5vw, 1rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .c2-timer-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 6px;
+    }
+
+    .c2-countdown {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 900;
+      color: var(--danger);
+      letter-spacing: 4px;
+      animation: blink 1s infinite;
+    }
+
+    .c2-note {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+    }
+
+    /* C3 — License counter */
+    .c3-counter {
+      background: var(--bg);
+      padding: 18px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .c3-counter p {
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    #license-count {
+      color: var(--danger);
+      font-weight: 900;
+      font-size: 1.1em;
+    }
+
+    #license-count.blink-red { animation: blinkRed 1s infinite; }
+
+    /* C4 — Objection cards */
+    .c4-section {
+      background: var(--bg2);
+      padding: 70px 20px;
+    }
+
+    .c4-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+
+    .c4-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .c4-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+
+    .c4-card-q {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .c4-card-a {
+      font-size: 0.88rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    /* C5 — Testimonials */
+    .c5-section {
+      background: var(--bg);
+      padding: 70px 20px;
+    }
+
+    .c5-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .c5-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 36px;
+    }
+
+    .c5-scroll {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .c5-scroll::-webkit-scrollbar { height: 5px; }
+    .c5-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 99px; }
+    .c5-scroll::-webkit-scrollbar-thumb { background: var(--cta); border-radius: 99px; }
+
+    .c5-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      min-width: 280px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+
+    .c5-stars { color: var(--gold); font-size: 0.95rem; margin-bottom: 8px; }
+
+    .c5-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .c5-role { font-size: 0.76rem; color: var(--muted); margin-bottom: 14px; }
+
+    .c5-text {
+      font-size: 0.88rem;
+      color: #ccc;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* C6 — Price block */
+    .c6-section {
+      background: var(--bg2);
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .c6-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-weight: 900;
+      margin-bottom: 32px;
+    }
+
+    .c6-card {
+      background: var(--card);
+      border: 2px solid var(--gold);
+      border-radius: 18px;
+      max-width: 420px;
+      margin: 0 auto 28px;
+      padding: 36px 28px;
+      box-shadow: 0 8px 40px rgba(251,191,36,0.15);
+    }
+
+    .c6-product-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .c6-price-from {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .c6-price-from s { color: #666; }
+
+    .c6-price-big {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      font-weight: 900;
+      color: var(--cta);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .c6-price-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .c6-checklist {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .c6-checklist li {
+      font-size: 0.88rem;
+      color: #d1d5db;
+      font-weight: 600;
+    }
+
+    /* C7 — Buy button */
+    .c7-section {
+      background: var(--bg2);
+      padding: 0 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* INSERIR URL DO CHECKOUT HOTMART AQUI no atributo href abaixo */
+    .btn-checkout {
+      display: block;
+      background: var(--cta);
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-decoration: none;
+      border: none;
+      border-radius: 10px;
+      padding: 22px 36px;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+      max-width: 520px;
+      letter-spacing: 0.3px;
+      line-height: 1.35;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 30px rgba(34,197,94,0.4);
+      animation: pulseRing 2s infinite;
+    }
+
+    .btn-checkout:hover {
+      background: var(--cta-dark);
+      transform: scale(1.02);
+    }
+
+    .c7-security {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* C8 — Guarantee */
+    .c8-section {
+      background: #050f08;
+      border-top: 1px solid rgba(34,197,94,0.2);
+      border-bottom: 1px solid rgba(34,197,94,0.2);
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .c8-emoji { font-size: 3.5rem; margin-bottom: 16px; }
+
+    .c8-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-weight: 900;
+      color: var(--cta);
+      margin-bottom: 16px;
+    }
+
+    .c8-text {
+      font-size: 0.95rem;
+      color: #ccc;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ════════════════════════════════════════════════
+       ZONA D — FOOTER (always visible)
+    ════════════════════════════════════════════════ */
+    .zone-d {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+    }
+
+    .zone-d-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .zone-d-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      max-width: 860px;
+      margin: 0 auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .zone-d-scroll::-webkit-scrollbar { height: 4px; }
+    .zone-d-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 99px; }
+    .zone-d-scroll::-webkit-scrollbar-thumb { background: var(--cta-dark); border-radius: 99px; }
+
+    .zone-d-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      min-width: 240px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+
+    .zone-d-stars { color: var(--gold); font-size: 0.82rem; margin-bottom: 6px; }
+
+    .zone-d-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.82rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .zone-d-text {
+      font-size: 0.81rem;
+      color: #bbb;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ════════════════════════════════════════════════
+       SOCIAL PROOF TOAST
+    ════════════════════════════════════════════════ */
+    #social-proof-wrap {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 9999;
+      width: 300px;
+      pointer-events: none;
+    }
+
+    @media (max-width: 480px) {
+      #social-proof-wrap { width: 256px; left: 12px; bottom: 12px; }
+    }
+
+    .sp-toast {
+      background: #fff;
+      border-radius: 12px;
+      border-left: 4px solid var(--cta);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateX(-120%);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .sp-toast.show { opacity: 1; transform: translateX(0); }
+
+    .sp-toast-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .sp-toast-name { font-size: 0.8rem; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+    .sp-toast-action { font-size: 0.76rem; color: #555; margin-bottom: 2px; }
+    .sp-toast-verified { font-size: 0.7rem; color: var(--cta); font-weight: 600; }
+
+    /* ════════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════════ */
+    @media (max-width: 560px) {
+      .c4-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     ZONA A — HEADER
+════════════════════════════════════════════════ -->
+<section class="zone-a">
+  <p class="zone-a-overtitle">Resultado Personalizado</p>
+  <h1 class="zone-a-title">
+    Mira el video a continuación —<br>
+    <span class="hl">tus resultados personalizados están adentro</span>
+  </h1>
+  <p class="zone-a-sub">
+    Basado en tus respuestas, el Dr. Yoshida tiene un mensaje urgente para ti.
+  </p>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ZONA B — VIDEO PLAYER
+════════════════════════════════════════════════ -->
+<section class="zone-b">
+  <div class="player-outer">
+    <div class="player-container">
+      <!-- INSERIR EMBED VTURB AQUI -->
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ZONA C — SALES SECTION (revelada após delay)
+════════════════════════════════════════════════ -->
+<div id="zone-c">
+
+  <!-- C1: Headline -->
+  <div class="c1-section">
+    <div class="container">
+      <span class="c1-badge">Protocolo Comprobado Científicamente</span>
+      <h2 class="c1-title">
+        El protocolo que está restaurando la memoria de miles de latinoamericanos —
+        y que tu cerebro <span class="hl-gold">necesita ahora</span>
+      </h2>
+    </div>
+  </div>
+
+  <!-- C2: Urgency bar with timer -->
+  <div class="c2-urgency">
+    <p class="c2-urgency-text">⚠️ Acceso especial disponible por:</p>
+    <p class="c2-countdown" id="final-countdown">15:00</p>
+    <p class="c2-note">Solo para personas que completaron el test de riesgo cognitivo hoy.</p>
+  </div>
+
+  <!-- C3: License counter -->
+  <div class="c3-counter">
+    <p>⚡ Solo quedan <strong id="license-count">84</strong> accesos disponibles a este precio.</p>
+  </div>
+
+  <!-- C4: Objection-breaking cards -->
+  <div class="c4-section">
+    <div class="container">
+      <h2 class="c4-title">Tus preguntas, respondidas</h2>
+      <div class="c4-grid">
+
+        <div class="c4-card">
+          <p class="c4-card-q">¿Es realmente natural y sin efectos secundarios?</p>
+          <p class="c4-card-a">Sí. El Protocolo Neuromax de Restauración Cognitiva utiliza únicamente compuestos herbales con respaldo científico: ácido rosmarínico, fosfatidilserina, curcumina y resveratrol. Ningún medicamento, ninguna receta, ningún efecto secundario reportado en más de 4.000 pacientes.</p>
+        </div>
+
+        <div class="c4-card">
+          <p class="c4-card-q">¿Funciona para personas mayores de 70 años?</p>
+          <p class="c4-card-a">Absolutamente. El protocolo fue diseñado específicamente para adultos mayores. Nuestros pacientes van de los 45 a los 92 años, y los resultados más sorprendentes vinieron de personas mayores de 75.</p>
+        </div>
+
+        <div class="c4-card">
+          <p class="c4-card-q">¿Cuánto tiempo hasta ver resultados?</p>
+          <p class="c4-card-a">Muchos usuarios reportan mejoras en claridad mental en los primeros 7 días. La restauración cognitiva profunda ocurre en el período de 90 días del protocolo completo.</p>
+        </div>
+
+        <div class="c4-card">
+          <p class="c4-card-q">¿Y si no funciona para mí?</p>
+          <p class="c4-card-a">Tienes 30 días de garantía total. Si no sientes diferencia, escríbenos y recibes el 100% de tu dinero de vuelta. Sin preguntas, sin trámites, sin riesgo.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- C5: Testimonials scroll -->
+  <div class="c5-section">
+    <div class="container">
+      <h2 class="c5-title">Lo que dicen nuestros pacientes</h2>
+      <p class="c5-sub">Resultados reales de personas reales</p>
+    </div>
+    <div class="c5-scroll">
+
+      <div class="c5-card">
+        <p class="c5-stars">★★★★★</p>
+        <p class="c5-name">Carlos M., hijo de paciente</p>
+        <p class="c5-role">Bogotá, Colombia</p>
+        <p class="c5-text">"Mi papá está muchísimo mejor en solo dos semanas. Tiene 82 años y ya volvió a hacer sus crucigramas. Su razonamiento y respuestas son mucho más rápidos. Gracias, Dr. Yoshida."</p>
+      </div>
+
+      <div class="c5-card">
+        <p class="c5-stars">★★★★★</p>
+        <p class="c5-name">Roberto A., 73 años</p>
+        <p class="c5-role">Compositor retirado — Buenos Aires, Argentina</p>
+        <p class="c5-text">"Llevo tres semanas y ya siento una gran diferencia en mi razonamiento y en la velocidad de mis pensamientos. Recuperé la confianza para seguir con mi música. Gracias, Dr. Yoshida."</p>
+      </div>
+
+      <div class="c5-card">
+        <p class="c5-stars">★★★★★</p>
+        <p class="c5-name">María G., 68 años</p>
+        <p class="c5-role">Ciudad de México, México</p>
+        <p class="c5-text">"Mi memoria se siente muchísimo más aguda. Mi esposo se sorprendió cuando le describí el vestido que usé en mi graduación hace 52 años. Ojalá hubiera empezado antes."</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- C6: Price block -->
+  <div class="c6-section">
+    <div class="container">
+      <h2 class="c6-title">Accede hoy con el precio especial del test</h2>
+      <div class="c6-card">
+        <p class="c6-product-name">Protocolo Neuromax de Restauración Cognitiva</p>
+        <p class="c6-price-from">Precio regular: <s>$299</s></p>
+        <p class="c6-price-big">$9.90</p>
+        <p class="c6-price-note">Acceso digital inmediato · Pago único · Sin suscripción</p>
+        <ul class="c6-checklist">
+          <li>✅ Acceso Lifetime — paga una vez, usa para siempre</li>
+          <li>✅ Descarga inmediata en cualquier dispositivo</li>
+          <li>✅ 30 días de garantía incondicional</li>
+          <li>✅ Soporte personalizado incluido</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- C7: Buy button -->
+  <div class="c7-section">
+    <!-- INSERIR URL DO CHECKOUT HOTMART AQUI no atributo href abaixo -->
+    <a href="#" class="btn-checkout" target="_blank" rel="noopener" onclick="if(typeof fbq!=='undefined') fbq('track','InitiateCheckout');">
+      ✅ QUIERO ACCESO AHORA POR $9.90
+    </a>
+    <p class="c7-security">🔒 Pago 100% seguro · Garantía de 30 días sin preguntas</p>
+  </div>
+
+  <!-- C8: Guarantee -->
+  <div class="c8-section">
+    <div class="container">
+      <p class="c8-emoji">🛡️</p>
+      <h2 class="c8-title">Garantía Total de 30 Días</h2>
+      <p class="c8-text">
+        Sigue el protocolo completo. Si no sientes tu mente más clara y tu memoria más aguda,
+        escríbenos y te devolvemos el 100% de tu dinero.
+        Sin preguntas, sin trámites, sin riesgo.
+      </p>
+    </div>
+  </div>
+
+</div>
+<!-- /#zone-c -->
+
+<!-- ════════════════════════════════════════════════
+     ZONA D — FOOTER TESTIMONIALS (always visible)
+════════════════════════════════════════════════ -->
+<section class="zone-d">
+  <p class="zone-d-title">Lo que dicen quienes ya empezaron</p>
+  <div class="zone-d-scroll">
+
+    <div class="zone-d-card">
+      <p class="zone-d-stars">★★★★★</p>
+      <p class="zone-d-name">Carlos M. — Bogotá</p>
+      <p class="zone-d-text">"Mi papá tiene 82 años y ya volvió a hacer sus crucigramas. Su razonamiento es mucho más rápido."</p>
+    </div>
+
+    <div class="zone-d-card">
+      <p class="zone-d-stars">★★★★★</p>
+      <p class="zone-d-name">Roberto A. — Buenos Aires</p>
+      <p class="zone-d-text">"Tres semanas y ya siento una gran diferencia. Recuperé la confianza para seguir con mi música."</p>
+    </div>
+
+    <div class="zone-d-card">
+      <p class="zone-d-stars">★★★★★</p>
+      <p class="zone-d-name">María G. — Ciudad de México</p>
+      <p class="zone-d-text">"Mi memoria se siente muchísimo más aguda. Ojalá hubiera empezado antes."</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Social proof container -->
+<div id="social-proof-wrap"></div>
+
+<!-- ════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════ -->
+<script>
+  /* Fire ViewContent on load */
+  if (typeof fbq !== 'undefined') { fbq('track', 'ViewContent'); }
+
+  /* ── REVEAL ZONE C after 1,161,000ms (19m21s) ── */
+  setTimeout(function() {
+    var zoneC = document.getElementById('zone-c');
+    zoneC.style.opacity = '0';
+    zoneC.style.display = 'block';
+    requestAnimationFrame(function() {
+      zoneC.style.transition = 'opacity 0.7s ease';
+      zoneC.style.opacity = '1';
+      setTimeout(function() { zoneC.style.transition = ''; }, 700);
+    });
+    setTimeout(function() {
+      zoneC.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+
+    startFinalTimer();
+    startLicenseCounter();
+    startSocialProof();
+  }, 1161000);
+
+  /* ── COUNTDOWN TIMER — 15 minutes ── */
+  function startFinalTimer() {
+    var totalSeconds = 15 * 60;
+    var display = document.getElementById('final-countdown');
+    if (!display) return;
+
+    function update() {
+      var m = Math.floor(totalSeconds / 60);
+      var s = totalSeconds % 60;
+      display.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      if (totalSeconds > 0) {
+        totalSeconds--;
+      } else {
+        clearInterval(tid);
+        display.textContent = '00:00';
+        display.style.animation = 'none';
+        display.style.color = '#555';
+      }
+    }
+
+    update();
+    var tid = setInterval(update, 1000);
+  }
+
+  /* ── LICENSE COUNTER — 84 → 11, every 45s ── */
+  function startLicenseCounter() {
+    var count = 84;
+    var el = document.getElementById('license-count');
+    if (!el) return;
+
+    setInterval(function() {
+      if (count > 11) {
+        count--;
+        el.textContent = count;
+        if (count <= 20) { el.classList.add('blink-red'); }
+      }
+    }, 45000);
+  }
+
+  /* ── SOCIAL PROOF NOTIFICATIONS ── */
+  var socialProofData = [
+    { name: 'María López',       location: 'Ciudad de México' },
+    { name: 'Carlos Herrera',    location: 'Bogotá' },
+    { name: 'Ana Martínez',      location: 'Buenos Aires' },
+    { name: 'Jorge Ramírez',     location: 'Lima' },
+    { name: 'Patricia González', location: 'Santiago' },
+    { name: 'Roberto Díaz',      location: 'Guadalajara' },
+    { name: 'Lucía Fernández',   location: 'Monterrey' },
+    { name: 'Miguel Torres',     location: 'Medellín' },
+    { name: 'Carmen Sánchez',    location: 'Caracas' },
+    { name: 'Eduardo Vargas',    location: 'Quito' }
+  ];
+
+  function shuffleArray(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function startSocialProof() {
+    var data = shuffleArray(socialProofData);
+    var idx = 0;
+
+    function showToast() {
+      if (idx >= data.length) { data = shuffleArray(socialProofData); idx = 0; }
+      var person = data[idx++];
+      var wrap = document.getElementById('social-proof-wrap');
+      while (wrap.firstChild) { wrap.removeChild(wrap.firstChild); }
+
+      var toast = document.createElement('div');
+      toast.className = 'sp-toast';
+      toast.innerHTML =
+        '<span class="sp-toast-icon">🧠</span>' +
+        '<div>' +
+          '<p class="sp-toast-name">' + person.name + ' — ' + person.location + '</p>' +
+          '<p class="sp-toast-action">acaba de acceder al Protocolo Neuromax</p>' +
+          '<p class="sp-toast-verified">✓ Compra verificada · ahora mismo</p>' +
+        '</div>';
+
+      toast.onclick = function() {
+        toast.classList.remove('show');
+        setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+      };
+
+      wrap.appendChild(toast);
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { toast.classList.add('show'); });
+      });
+
+      setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+      }, 4500);
+
+      var delay = 18000 + Math.floor(Math.random() * 12000);
+      setTimeout(showToast, delay);
+    }
+
+    setTimeout(showToast, 8000);
+  }
+</script>
+</body>
+</html>
