@@ -665,16 +665,16 @@
     .fb-avatar {
       width: 38px;
       height: 38px;
+      min-width: 38px;
       border-radius: 50%;
-      background: var(--card2);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.82rem;
-      color: var(--muted);
+      overflow: hidden;
+      background: #ddd;
+    }
+    .fb-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .fb-comment-body { flex: 1; }
@@ -911,7 +911,7 @@
 
       <!-- Comentario 1 -->
       <div class="fb-comment">
-        <div class="fb-avatar">CR</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=1" alt="Carmen Rodríguez" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Carmen Rodríguez</span>
@@ -929,7 +929,7 @@
 
       <!-- Comentario 2 -->
       <div class="fb-comment">
-        <div class="fb-avatar">MH</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=11" alt="Miguel Herrera" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Miguel Herrera</span>
@@ -947,7 +947,7 @@
 
       <!-- Comentario 3 -->
       <div class="fb-comment">
-        <div class="fb-avatar">PG</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=5" alt="Patricia Gómez" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Patricia Gómez</span>
@@ -965,7 +965,7 @@
 
       <!-- Comentario 4 -->
       <div class="fb-comment">
-        <div class="fb-avatar">LF</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=9" alt="Lucía Fernández" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Lucía Fernández</span>
@@ -983,7 +983,7 @@
 
       <!-- Comentario 5 -->
       <div class="fb-comment">
-        <div class="fb-avatar">JR</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=14" alt="Jorge Ramírez" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Jorge Ramírez</span>
@@ -1001,7 +1001,7 @@
 
       <!-- Respuesta indentada a comentario 5 -->
       <div class="fb-comment fb-reply">
-        <div class="fb-avatar">CM</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=17" alt="Carlos Mendoza" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Carlos Mendoza</span>
@@ -1019,7 +1019,7 @@
 
       <!-- Comentario 6 -->
       <div class="fb-comment">
-        <div class="fb-avatar">AM</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=20" alt="Ana Martínez" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Ana Martínez</span>
@@ -1037,7 +1037,7 @@
 
       <!-- Comentario 7 -->
       <div class="fb-comment">
-        <div class="fb-avatar">RD</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=22" alt="Roberto Díaz" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Roberto Díaz</span>
@@ -1055,7 +1055,7 @@
 
       <!-- Comentario 8 -->
       <div class="fb-comment">
-        <div class="fb-avatar">GT</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=25" alt="Gabriela Torres" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Gabriela Torres</span>
@@ -1073,7 +1073,7 @@
 
       <!-- Comentario 9 -->
       <div class="fb-comment">
-        <div class="fb-avatar">EV</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=33" alt="Eduardo Vargas" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Eduardo Vargas</span>
@@ -1091,7 +1091,7 @@
 
       <!-- Comentario 10 -->
       <div class="fb-comment">
-        <div class="fb-avatar">SC</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=27" alt="Sofía Castillo" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Sofía Castillo</span>
@@ -1109,7 +1109,7 @@
 
       <!-- Comentario 11 -->
       <div class="fb-comment">
-        <div class="fb-avatar">AM</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=36" alt="Andrés Morales" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Andrés Morales</span>
@@ -1127,7 +1127,7 @@
 
       <!-- Comentario 12 -->
       <div class="fb-comment">
-        <div class="fb-avatar">IR</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=29" alt="Isabel Reyes" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Isabel Reyes</span>
@@ -1145,7 +1145,7 @@
 
       <!-- Comentario 13 -->
       <div class="fb-comment">
-        <div class="fb-avatar">FL</div>
+        <div class="fb-avatar"><img src="https://i.pravatar.cc/80?img=40" alt="Fernando López" /></div>
         <div class="fb-comment-body">
           <div class="fb-comment-header">
             <span class="fb-comment-name">Fernando López</span>
