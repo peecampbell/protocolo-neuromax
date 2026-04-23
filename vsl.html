@@ -1182,6 +1182,8 @@
   </p>
 </footer>
 
+<div id="popup-container" style="position:fixed;top:20px;right:20px;z-index:99999;width:300px;"></div>
+
 <!-- ════════════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════════════ -->
@@ -1354,10 +1356,8 @@
       }, 6000);
       setTimeout(showPopup, 10000);
     }
-    setTimeout(showPopup, 2000);
+    showPopup();
   }
 </script>
-
-<div id="popup-container" style="position:fixed;top:20px;right:20px;z-index:99999;width:300px;"></div>
 </body>
 </html>
