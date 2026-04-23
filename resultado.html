@@ -305,36 +305,6 @@
 </div>
 
 <script>
-  /* ============================================================
-     PROFILES
-  ============================================================ */
-  var profiles = {
-    low: {
-      badgeClass : 'badge-low',
-      badgeText  : '✓ RIESGO BAJO',
-      titleColor : 'var(--cta)',
-      title      : 'Tu cerebro está en buena forma, pero el tiempo no espera.',
-      text       : 'Por ahora, tu memoria funciona bien y eso es una excelente noticia. Pero los datos son claros: después de los 45 años, los niveles de BDNF, la proteína que protege tu cerebro, comienzan a caer silenciosamente. No esperes a sentir los síntomas para actuar. Lo que descubrirás en el siguiente video puede ser la diferencia entre mantener tu mente aguda por décadas o empezar a perderla sin darte cuenta.'
-    },
-    mid: {
-      badgeClass : 'badge-mid',
-      badgeText  : '⚠ RIESGO MODERADO',
-      titleColor : '#f97316',
-      title      : 'Tu cerebro está enviando señales. Es momento de escucharlas.',
-      text       : 'Tus respuestas revelan que ya estás experimentando señales tempranas de deterioro cognitivo. No son coincidencias ni simple cansancio. Son señales de que las neurotoxinas están comenzando a acumularse en tu cerebro y que tus niveles de BDNF están cayendo. La buena noticia es que estás a tiempo. En el siguiente video, el Dr. Yoshida explica exactamente por qué esto está pasando y el protocolo natural que ya ha ayudado a miles de personas en tu misma situación.'
-    },
-    high: {
-      badgeClass : 'badge-high',
-      badgeText  : '⛔ RIESGO ALTO',
-      titleColor : 'var(--danger)',
-      title      : 'Tu cerebro necesita ayuda ahora. Cada día que pasa importa.',
-      text       : 'Tus respuestas son una señal de alerta seria. Lo que estás viviendo no es normal ni inevitable, pero sí es urgente. Las neurotoxinas llevan tiempo atacando tus neuronas, y sin intervención, el deterioro puede avanzar más rápido de lo que imaginas. El Dr. Yoshida ha desarrollado un protocolo específicamente para personas en tu situación, con resultados documentados en miles de pacientes.'
-    }
-  };
-
-  /* ============================================================
-     INIT
-  ============================================================ */
   (function init() {
     var params = new URLSearchParams(window.location.search);
     var score  = parseInt(params.get('score'), 10);
@@ -344,42 +314,28 @@
       return;
     }
 
-    /* Fire CompleteRegistration pixel */
     if (typeof fbq !== 'undefined') { fbq('track', 'CompleteRegistration'); }
 
-    /* Show spinner for 3 seconds, then reveal result */
-    setTimeout(function() {
-      showResult(score);
-    }, 3000);
+    setTimeout(function() { showResult(score); }, 3000);
   })();
 
   function showResult(score) {
-    /* Hide spinner */
     document.getElementById('spinner-wrap').style.display = 'none';
 
-    /* Determine profile */
-    var profile;
-    if      (score <= 10) { profile = profiles.low;  }
-    else if (score <= 25) { profile = profiles.mid;  }
-    else                  { profile = profiles.high; }
-
-    /* Populate */
     document.getElementById('score-display-num').textContent = score;
-    document.getElementById('score-display-num').style.color = profile.titleColor;
+    document.getElementById('score-display-num').style.color = 'var(--danger)';
 
     var badge = document.getElementById('risk-badge');
-    badge.className = 'risk-badge ' + profile.badgeClass;
-    badge.textContent = profile.badgeText;
+    badge.className = 'risk-badge badge-high';
+    badge.textContent = '⛔ RIESGO ALTO';
 
     var titleEl = document.getElementById('result-title');
-    titleEl.textContent = profile.title;
-    titleEl.style.color = profile.titleColor;
+    titleEl.textContent = 'Tu cerebro necesita ayuda ahora. Cada día que pasa importa.';
+    titleEl.style.color = 'var(--danger)';
 
-    document.getElementById('result-text').textContent = profile.text;
+    document.getElementById('result-text').textContent = 'Tus respuestas son una señal de alerta seria. Lo que estás viviendo no es normal ni inevitable, pero sí es urgente. Las neurotoxinas llevan tiempo atacando tus neuronas, y sin intervención, el deterioro puede avanzar más rápido de lo que imaginas. El Dr. Yoshida ha desarrollado un protocolo específicamente para personas en tu situación, con resultados documentados en miles de pacientes.';
 
-    /* Show result */
-    var wrap = document.getElementById('result-wrap');
-    wrap.style.display = 'block';
+    document.getElementById('result-wrap').style.display = 'block';
   }
 
   function goToVSL() {

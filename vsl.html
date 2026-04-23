@@ -609,13 +609,18 @@
       top: 20px;
       right: 20px;
       z-index: 9999;
-      max-width: 300px;
+      width: 300px;
       pointer-events: none;
     }
 
-    @keyframes slideInRight {
-      from { transform: translateX(120%); opacity: 0; }
-      to   { transform: translateX(0);    opacity: 1; }
+    @keyframes puIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes puOut {
+      from { opacity: 1; transform: translateX(0); }
+      to   { opacity: 0; transform: translateX(30px); }
     }
 
     .pu-popup {
@@ -625,19 +630,11 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.12);
       padding: 14px 16px;
       pointer-events: auto;
-      opacity: 0;
-      transform: translateX(120%);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      animation: puIn 0.4s ease forwards;
     }
 
-    .pu-popup.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .pu-popup.hide {
-      opacity: 0;
-      transform: translateX(120%);
+    .pu-popup.hiding {
+      animation: puOut 0.4s ease forwards;
     }
 
     .pu-line1 {
@@ -1368,7 +1365,8 @@
       if (idx >= purchasePopupData.length) { idx = 0; }
       var person = purchasePopupData[idx++];
 
-      while (wrap.firstChild) { wrap.removeChild(wrap.firstChild); }
+      /* clear previous */
+      wrap.innerHTML = '';
 
       var popup = document.createElement('div');
       popup.className = 'pu-popup';
@@ -1378,18 +1376,14 @@
         '<div class="pu-line3">✅ Compra verificada · agora mesmo</div>';
 
       wrap.appendChild(popup);
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() { popup.classList.add('show'); });
-      });
 
+      /* start hide animation after 6s, remove from DOM after it finishes */
       setTimeout(function() {
-        popup.classList.remove('show');
-        popup.classList.add('hide');
-        setTimeout(function() {
-          if (popup.parentNode) { popup.parentNode.removeChild(popup); }
-        }, 400);
+        popup.classList.add('hiding');
+        setTimeout(function() { wrap.innerHTML = ''; }, 400);
       }, 6000);
 
+      /* show next popup 10s after this one started */
       setTimeout(showPopup, 10000);
     }
 
