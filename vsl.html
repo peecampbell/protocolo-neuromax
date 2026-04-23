@@ -604,59 +604,37 @@
     /* ════════════════════════════════════════════════
        PURCHASE POPUPS — top-right
     ════════════════════════════════════════════════ */
-    #purchase-popup-wrap {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 9999;
-      width: 300px;
-      pointer-events: none;
-    }
-
-    @keyframes puIn {
-      from { opacity: 0; transform: translateX(30px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes puOut {
-      from { opacity: 1; transform: translateX(0); }
-      to   { opacity: 0; transform: translateX(30px); }
-    }
-
-    .pu-popup {
+    .purchase-popup {
       background: #ffffff;
       border-left: 4px solid #16a34a;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       padding: 14px 16px;
+      margin-bottom: 10px;
+      transform: translateX(120%);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
       pointer-events: auto;
-      animation: puIn 0.4s ease forwards;
     }
-
-    .pu-popup.hiding {
-      animation: puOut 0.4s ease forwards;
+    .purchase-popup.show {
+      transform: translateX(0);
+      opacity: 1;
     }
-
-    .pu-line1 {
-      font-size: 14px;
-      font-weight: 700;
+    .purchase-popup .pp-name {
+      font-weight: bold;
       color: #111111;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-size: 14px;
+      margin-bottom: 2px;
     }
-
-    .pu-line2 {
-      font-size: 13px;
+    .purchase-popup .pp-text {
       color: #555555;
+      font-size: 13px;
       margin-bottom: 4px;
     }
-
-    .pu-line3 {
-      font-size: 12px;
-      font-weight: 700;
+    .purchase-popup .pp-verified {
       color: #16a34a;
+      font-size: 12px;
+      font-weight: bold;
     }
 
     /* ════════════════════════════════════════════════
@@ -753,7 +731,6 @@
     ════════════════════════════════════════════════ */
     @media (max-width: 560px) {
       .c4-grid { grid-template-columns: 1fr; }
-      #purchase-popup-wrap { max-width: 260px; right: 12px; top: 12px; }
     }
   </style>
 </head>
@@ -1193,9 +1170,6 @@
 <!-- Social proof container (bottom-left) -->
 <div id="social-proof-wrap"></div>
 
-<!-- Purchase popup container (top-right) -->
-<div id="purchase-popup-wrap"></div>
-
 <footer>
   <p>© 2025 Protocolo Neuromax de Restauración Cognitiva. Todos los derechos reservados.</p>
   <p style="margin-top:8px;">
@@ -1337,58 +1311,53 @@
     setTimeout(showToast, 8000);
   }
 
-  /* ── PURCHASE POPUPS — top-right, every 10s ── */
-  var purchasePopupData = [
-    { name: 'Carmen Rodríguez',  location: 'Ciudad de México' },
-    { name: 'Miguel Herrera',    location: 'Bogotá' },
-    { name: 'Patricia Gómez',    location: 'Buenos Aires' },
-    { name: 'Eduardo Vargas',    location: 'Lima' },
-    { name: 'Lucía Fernández',   location: 'Santiago' },
-    { name: 'Roberto Díaz',      location: 'Guadalajara' },
-    { name: 'Andrés Morales',    location: 'Monterrey' },
-    { name: 'Isabel Reyes',      location: 'Medellín' },
-    { name: 'Sofía Castillo',    location: 'Caracas' },
-    { name: 'Fernando López',    location: 'Quito' },
-    { name: 'Gabriela Torres',   location: 'Santo Domingo' },
-    { name: 'Jorge Ramírez',     location: 'San José' },
-    { name: 'Ana Martínez',      location: 'Asunción' },
-    { name: 'Carlos Mendoza',    location: 'La Paz' },
-    { name: 'Valentina Cruz',    location: 'Montevideo' }
-  ];
-
   function startPurchasePopups() {
+    var people = [
+      { name: "Carmen Rodríguez", city: "Ciudad de México" },
+      { name: "Miguel Herrera", city: "Bogotá" },
+      { name: "Patricia Gómez", city: "Buenos Aires" },
+      { name: "Eduardo Vargas", city: "Lima" },
+      { name: "Lucía Fernández", city: "Santiago" },
+      { name: "Roberto Díaz", city: "Guadalajara" },
+      { name: "Andrés Morales", city: "Monterrey" },
+      { name: "Isabel Reyes", city: "Medellín" },
+      { name: "Sofía Castillo", city: "Caracas" },
+      { name: "Fernando López", city: "Quito" },
+      { name: "Gabriela Torres", city: "Santo Domingo" },
+      { name: "Jorge Ramírez", city: "San José" },
+      { name: "Ana Martínez", city: "Asunción" },
+      { name: "Carlos Mendoza", city: "La Paz" },
+      { name: "Valentina Cruz", city: "Montevideo" }
+    ];
     var idx = 0;
-    var wrap = document.getElementById('purchase-popup-wrap');
-    if (!wrap) return;
-
     function showPopup() {
-      if (idx >= purchasePopupData.length) { idx = 0; }
-      var person = purchasePopupData[idx++];
-
-      /* clear previous */
-      wrap.innerHTML = '';
-
+      var person = people[idx % people.length];
+      idx++;
+      var container = document.getElementById('popup-container');
       var popup = document.createElement('div');
-      popup.className = 'pu-popup';
+      popup.className = 'purchase-popup';
       popup.innerHTML =
-        '<div class="pu-line1">🛒 <span>' + person.name + '</span></div>' +
-        '<div class="pu-line2">' + person.location + ' · Acabo de acceder al Protocolo Neuromax 🧠</div>' +
-        '<div class="pu-line3">✅ Compra verificada · agora mesmo</div>';
-
-      wrap.appendChild(popup);
-
-      /* start hide animation after 6s, remove from DOM after it finishes */
+        '<div class="pp-name">🛒 ' + person.name + ' — ' + person.city + '</div>' +
+        '<div class="pp-text">Acabo de acceder al Protocolo NeuroMax 🧠</div>' +
+        '<div class="pp-verified">✅ Compra verificada · agora mesmo</div>';
+      container.appendChild(popup);
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          popup.classList.add('show');
+        });
+      });
       setTimeout(function() {
-        popup.classList.add('hiding');
-        setTimeout(function() { wrap.innerHTML = ''; }, 400);
+        popup.classList.remove('show');
+        setTimeout(function() {
+          if (popup.parentNode) popup.parentNode.removeChild(popup);
+        }, 400);
       }, 6000);
-
-      /* show next popup 10s after this one started */
       setTimeout(showPopup, 10000);
     }
-
-    showPopup();
+    setTimeout(showPopup, 2000);
   }
 </script>
+
+<div id="popup-container" style="position:fixed;top:20px;right:20px;z-index:99999;width:300px;"></div>
 </body>
 </html>
