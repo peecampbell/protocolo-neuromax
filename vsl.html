@@ -159,10 +159,10 @@
     }
 
     /* ════════════════════════════════════════════════
-       ZONA C — SALES SECTION (hidden until delay)
+       SALES CONTENT — revelado via JS após delay
     ════════════════════════════════════════════════ */
-    #zone-c {
-      display: block;
+    #sales-content {
+      display: none;
     }
 
     /* C1 — Headline */
@@ -762,9 +762,9 @@
 </section>
 
 <!-- ════════════════════════════════════════════════
-     ZONA C — SALES SECTION (revelada após delay)
+     SALES CONTENT — oculto até o delay de 19m21s
 ════════════════════════════════════════════════ -->
-<div id="zone-c">
+<div id="sales-content" style="display:none">
 
   <!-- C1: Headline -->
   <div class="c1-section">
@@ -1164,23 +1164,23 @@
     </div>
   </div>
 
+  <footer>
+    <p>© 2025 Protocolo Neuromax de Restauración Cognitiva. Todos los derechos reservados.</p>
+    <p style="margin-top:8px;">
+      <a href="#">Política de Privacidad</a> &nbsp;|&nbsp;
+      <a href="#">Términos de Uso</a> &nbsp;|&nbsp;
+      <a href="#">Contacto</a>
+    </p>
+    <p style="margin-top:12px;max-width:600px;margin-left:auto;margin-right:auto;">
+      Los resultados descritos son individuales y pueden variar. Este producto no garantiza resultados específicos.
+    </p>
+  </footer>
+
 </div>
-<!-- /#zone-c -->
+<!-- /#sales-content -->
 
 <!-- Social proof container (bottom-left) -->
 <div id="social-proof-wrap"></div>
-
-<footer>
-  <p>© 2025 Protocolo Neuromax de Restauración Cognitiva. Todos los derechos reservados.</p>
-  <p style="margin-top:8px;">
-    <a href="#">Política de Privacidad</a> &nbsp;|&nbsp;
-    <a href="#">Términos de Uso</a> &nbsp;|&nbsp;
-    <a href="#">Contacto</a>
-  </p>
-  <p style="margin-top:12px;max-width:600px;margin-left:auto;margin-right:auto;">
-    Los resultados descritos son individuales y pueden variar. Este producto no garantiza resultados específicos.
-  </p>
-</footer>
 
 <div id="popup-container" style="position:fixed;top:20px;right:20px;z-index:99999;width:300px;"></div>
 
@@ -1203,6 +1203,12 @@
   setTimeout(showSalesPage, 1161000);
 
   function showSalesPage() {
+    var el = document.getElementById('sales-content');
+    el.style.display = 'block';
+    el.style.opacity = '0';
+    el.style.transition = 'opacity 0.7s ease';
+    setTimeout(function() { el.style.opacity = '1'; }, 50);
+    window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
     startFinalTimer();
     startLicenseCounter();
     startSocialProof();
