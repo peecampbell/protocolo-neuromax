@@ -133,8 +133,8 @@
        ZONA B — VIDEO PLAYER
     ════════════════════════════════════════════════ */
     .zone-b {
-      background: var(--card2);
-      padding: 40px 20px;
+      background: var(--bg);
+      padding: 24px 20px;
       display: flex;
       justify-content: center;
     }
@@ -148,10 +148,10 @@
       position: relative;
       width: 100%;
       padding-top: 100%; /* 1:1 */
-      background: var(--card2);
+      background: var(--bg);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 12px 60px rgba(0,0,0,0.8);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
     }
 
     .player-container iframe,
@@ -734,6 +734,8 @@
     ════════════════════════════════════════════════ */
     @media (max-width: 560px) {
       .c4-grid { grid-template-columns: 1fr; }
+      .zone-b { padding: 0; }
+      .player-container { border-radius: 0; box-shadow: none; }
     }
   </style>
 </head>
